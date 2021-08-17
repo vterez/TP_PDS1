@@ -1,0 +1,44 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<style>
+body {background-color: #121212;}
+p {color:#E0E0E0;font-family:calibri;}
+label {color:#E0E0E0;font-family:calibri;}
+input[type='number'] {background-color: #E0E0E0;font-family:calibri;font-size:20px}
+input[type='email'] {background-color: #E0E0E0;font-family:calibri;font-size:20px}
+input[type='radio'] {background-color: #E0E0E0;font-family:calibri;font-size:20px}
+input[type='file'] {font-family:calibri;font-size:20px;color:#E0E0E0 }
+label {font-size:20px;}
+h2 {color:#E0E0E0;font-family:calibri;}
+td {color:#E0E0E0;font-family:calibri;}
+</style>
+</head>
+
+<form action="/Uploaded" enctype="multipart/form-data" method="post">
+	{% csrf_token %}
+<label for "csvfile2">Insira o arquivo.</label><br>
+<label> Se for de datas, o formato é Dia/Mês,Hora:Minuto</label> <br>
+<label> Se for de matrículas, uma por linha </label> <br> <br>
+<input type="file"
+       id="csvfile" name="csvfile"
+       accept="text/txt, text/csv"> <br> <br>
+<input type="radio"
+    id="Tipo"
+    name="opcao"
+    value="Matrículas"
+    required>
+<label> Matrículas</label> <br>
+<input type="radio"
+    id="Tipo"
+    name="opcao"
+    value="Horários"
+    required>
+<label> Horários</label> <br> <br>
+
+<input type="submit" value="Enviar">
+</form>
+
+<p>{{data}}</p>
+<p>Erros da última tentativa:</p>
+<p>{{erro}}</p>

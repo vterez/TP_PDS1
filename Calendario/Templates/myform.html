@@ -1,0 +1,39 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<link rel="shortcut icon" href="#">
+<style>
+body {background-color: #121212;}
+p {color:#E0E0E0;font-family:calibri;}
+label {color:#E0E0E0;font-family:calibri;}
+input[type='number'] {background-color: #E0E0E0;font-family:calibri;font-size:20px}
+input[type='email'] {background-color: #E0E0E0;font-family:calibri;font-size:20px}
+input[type='radio'] {background-color: #E0E0E0;font-family:calibri;font-size:20px}
+input[type='text'] {background-color: #E0E0E0;font-family:calibri;font-size:20px}
+label {font-size:20px;}
+h2 {color:#E0E0E0;font-family:calibri;}
+</style>
+</head>
+
+<h2>Sistema de agendamento de apresentação do Trabalho Prático</h2>
+<p style="color:red">{{failed}}</p>
+
+<p>Abaixo, encontra-se uma lista com os horários disponíveis, em ordem. Marque o horário que melhor te atende e preencha o formulário ao fim da página</p>
+
+
+<form action="/Confirm" method="post">
+	{% csrf_token %}
+    <p>Horários: </p>
+	{% for cod,horario in horarios %}    
+	  <input id="opcao" type="radio" name="opcao" value={{cod}} required>
+	  <label>{{horario}}</label><br>
+	{% endfor %}
+	<br>
+	<label for="matricula">Número de matrícula:</label><br>
+    <input id="matricula" type="number" name="matricula" required><br><br>
+	<label for="nome">Nome completo:</label><br>
+    <input id="nome" type="text" name="nome" required><br><br>
+	<label for="email">Email para contato: </label><br>
+    <input id="email" type="email" name="email" required><br><br>
+    <input type="submit" value="Enviar">
+</form>
