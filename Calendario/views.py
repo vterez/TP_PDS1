@@ -45,7 +45,8 @@ def Confirm(request):
     try:
         livre = HorarioLivre.objects.get(id=opcao)
         marcar = livre.horario
-        marcado = HorarioMarcado(opcao,marcar,post["matricula"],post['nome'],post["email"])
+        num = livre.id
+        marcado = HorarioMarcado(opcao,marcar,post["matricula"],post['nome'],post["email"],num)
         marcado.save()
         livre.delete()
     except HorarioLivre.DoesNotExist:
@@ -55,7 +56,19 @@ def Confirm(request):
         else:
             return render(request,'failed.html',{'failed':'Não há horários disponíveis. Favor contatar o Pedro.'})
     except IntegrityError:
-        return render(request,'failed.html',{"failed":"Já foi selecionado um horário para seu número de matrícula. Se precisa editá-lo, contate o Vitor ou o Pedro."})
+        antigo = HorarioMarcado.objects.get(matricula=matricula)
+        dt = antigo.horario
+        id = antigo.num
+        antigo.delete()
+        livre.delete()
+        livre = HorarioLivre(dt,id)
+        marcado.save()
+        livre.save()
+        mystr = f'{post["matricula"]}_{post["opcao"]}'.encode('utf8')
+        val = str(khash(mystr).hexdigest())
+        hora = f'{marcado.horario.hour:02d}:{marcado.horario.minute:02d}'
+        dia = f'{marcado.horario.day:02d}/{marcado.horario.month:02d}'
+        return render(request,'code.html',{"obs":"Já foi selecionado um horário para seu número de matrícula, então, ele foi liberado e o novo horário foi alocado","code":val,'hora':hora,'dia':dia,'nome':post['nome'],'matricula':matricula})
     except Exception as ex:
         return render(request,'failed.html',{"failed":"Erro inesperado, por favor, mande um email para o monitor Vitor com um print dessa tela","ex":ex})
     mystr = f'{post["matricula"]}_{post["opcao"]}'.encode('utf8')
