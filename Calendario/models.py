@@ -32,6 +32,7 @@ class HorarioMarcado(models.Model):
     matricula = models.IntegerField(unique=True)
     nome = models.CharField(max_length=100)
     email = models.EmailField(default="null@null.com")
+    num = models.IntegerField(null=True)
     
     def __str__(self):
         return f'{self.nome},{self.horario.month}/{self.horario.day}/{self.horario.year},{self.horario.hour}:{self.horario.minute}'
