@@ -81,6 +81,8 @@ def Upload(request):
     return render(request,'upload.html',{'data':'','erro':''})
 
 def Uploaded(request):
+    if request.POST['senha'] != "pedrolmo":
+        return render(request,'upload.html',{'data':f'{0} entradas foram adicionadas','erro':'Senha inválida'})
     reader = csv.reader(decode_utf8(request.FILES['csvfile']))
     if request.POST['opcao'] == 'Matrículas':
         erro = []
