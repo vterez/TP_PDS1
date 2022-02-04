@@ -55,7 +55,7 @@ ROOT_URLCONF = 'TP.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [.Calendario.Templates],
+        'DIRS': [Calendario.Templates],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
