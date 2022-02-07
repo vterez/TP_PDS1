@@ -68,7 +68,7 @@ def Confirm(request):
         val = str(khash(mystr).hexdigest())
         hora = f'{marcado.horario.hour:02d}:{marcado.horario.minute:02d}'
         dia = f'{marcado.horario.day:02d}/{marcado.horario.month:02d}'
-        return render(request,'code.html',{"obs":"Já foi selecionado um horário para seu número de matrícula, então, ele foi liberado e o novo horário foi alocado","code":val,'hora':hora,'dia':dia,'nome':post['nome'],'matricula':matricula})
+        return render(request,'code.html',{"opcao":opcao,"obs":"Já foi selecionado um horário para seu número de matrícula, então, ele foi liberado e o novo horário foi alocado","code":val,'hora':hora,'dia':dia,'nome':post['nome'],'matricula':matricula})
     except Exception as ex:
         return render(request,'failed.html',{"failed":"Erro inesperado, por favor, mande um email para o monitor Vitor com um print dessa tela","ex":ex})
     mystr = f'{post["matricula"]}_{post["opcao"]}'.encode('utf8')
