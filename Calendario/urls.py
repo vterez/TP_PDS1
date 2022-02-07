@@ -6,4 +6,5 @@ urlpatterns = [
     path('Confirm',Confirm,name='Confirm'),
     path('Upload',Upload,name='Upload'),
     path('Uploaded',Uploaded,name='Uploaded'),
+    path('ValidaCodigo',ValidaCodigo,name='ValidaCodigo'),
 ]
