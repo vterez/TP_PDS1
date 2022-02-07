@@ -75,7 +75,7 @@ def Confirm(request):
     val = str(khash(mystr).hexdigest())
     hora = f'{marcado.horario.hour:02d}:{marcado.horario.minute:02d}'
     dia = f'{marcado.horario.day:02d}/{marcado.horario.month:02d}'
-    return render(request,'code.html',{"code":val,'hora':hora,'dia':dia,'nome':post['nome'],'matricula':matricula})
+    return render(request,'code.html',{"opcao":opcao,"code":val,'hora':hora,'dia':dia,'nome':post['nome'],'matricula':matricula})
 
 def Upload(request):
     return render(request,'upload.html',{'data':'','erro':''})
