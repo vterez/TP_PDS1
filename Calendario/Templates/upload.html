@@ -18,7 +18,7 @@ td {color:#E0E0E0;font-family:calibri;}
 <form action="/Uploaded" enctype="multipart/form-data" method="post">
 	{% csrf_token %}
 <label for "csvfile2">Insira o arquivo.</label><br>
-<label> Se for de datas, o formato é Dia/Mês,Hora:Minuto</label> <br>
+<label> Se for de datas, o formato é Dia/Mês,Hora:Minuto, uma por linha</label> <br>
 <label> Se for de matrículas, uma por linha </label> <br> <br>
 <input type="file"
        id="csvfile" name="csvfile"
