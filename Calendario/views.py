@@ -14,7 +14,7 @@ def OrganizaHorarios():
     horarios = HorarioLivre.objects.values_list("id","horario")
     horarios_formatados = []
     for i in range(len(horarios)):
-        horarios_formatados.append((horarios[i][0],horarios[i][1].strftime("Dia %d/%m as %H:%M")))
+        horarios_formatados.append((horarios[i][0],horarios[i][1].strftime("Dia %d/%m às %H:%M")))
     return horarios_formatados
 
 def decode_utf8(input_iterator):
