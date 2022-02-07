@@ -115,4 +115,13 @@ def Uploaded(request):
                 erro.append(str(n+1))
         
     return render(request,'upload.html',{'data':f'{j} entradas foram adicionadas','erro':';'.join(erro)})
+
+def ValidaCodigo(request):
+    matricula = request.GET['matricula']
+    opcao = request.GET['opcao']
+    codigo = request.GET['codigo']
+    mystr = f'{matricula}_{opcao}'.encode('utf8')
+    val = str(khash(mystr).hexdigest())
+    return JsonResponse({"resultado":val == codigo})
+    
     
