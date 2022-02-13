@@ -65,14 +65,14 @@ def Confirm(request):
         marcado.save()
         livre.save()
         mystr = f'{post["matricula"]}_{post["opcao"]}'.encode('utf8')
-        val = str(khash(mystr).hexdigest())
+        val = str(khash(mystr).hexdigest())[:30]
         hora = f'{marcado.horario.hour:02d}:{marcado.horario.minute:02d}'
         dia = f'{marcado.horario.day:02d}/{marcado.horario.month:02d}'
         return render(request,'code.html',{"opcao":opcao,"obs":"Já foi selecionado um horário para seu número de matrícula, então, ele foi liberado e o novo horário foi alocado","code":val,'hora':hora,'dia':dia,'nome':post['nome'],'matricula':matricula})
     except Exception as ex:
         return render(request,'failed.html',{"failed":"Erro inesperado, por favor, mande um email para o monitor Vitor com um print dessa tela","ex":ex})
     mystr = f'{post["matricula"]}_{post["opcao"]}'.encode('utf8')
-    val = str(khash(mystr).hexdigest())
+    val = str(khash(mystr).hexdigest())[:30]
     hora = f'{marcado.horario.hour:02d}:{marcado.horario.minute:02d}'
     dia = f'{marcado.horario.day:02d}/{marcado.horario.month:02d}'
     return render(request,'code.html',{"opcao":opcao,"code":val,'hora':hora,'dia':dia,'nome':post['nome'],'matricula':matricula})
@@ -121,7 +121,7 @@ def ValidaCodigo(request):
     opcao = request.GET['opcao']
     codigo = request.GET['codigo']
     mystr = f'{matricula}_{opcao}'.encode('utf8')
-    val = str(khash(mystr).hexdigest())
+    val = str(khash(mystr).hexdigest())[:30]
     return JsonResponse({"resultado":val == codigo})
     
     
