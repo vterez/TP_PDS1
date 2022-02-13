@@ -11,10 +11,10 @@ def Download_CSV(modeladmin,request,query):
         print(f'Subject,Start date,Start time',file=arq)
         for i in query:
             print(i,file=arq)
-    f = open('Dias.csv', 'r')
-    response = HttpResponse(f, content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename=Dias.csv'
-    return response
+    with open('Dias.csv', 'r') as f:
+        response = HttpResponse(f, content_type='text/csv')
+        response['Content-Disposition'] = 'attachment; filename=Dias.csv'
+        return response
 
 class HorarioLivre(models.Model):
     horario = models.DateTimeField(blank=True,null=True,default=now())
