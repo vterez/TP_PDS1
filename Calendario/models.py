@@ -37,8 +37,6 @@ class HorarioMarcado(models.Model):
     def __str__(self):
         return f'{self.nome},{self.horario.month}/{self.horario.day}/{self.horario.year},{self.horario.hour}:{self.horario.minute}'
     
-    def __repr__(self):
-        return 'aaaa'
     class Meta():
         verbose_name = lazy("Horário marcado")
         verbose_name_plural = lazy("Horários marcados")
