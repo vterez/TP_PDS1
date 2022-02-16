@@ -1,6 +1,6 @@
 from .models import *
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from hashlib import blake2s as khash
 from django.db import IntegrityError
 from django.utils.timezone import now
